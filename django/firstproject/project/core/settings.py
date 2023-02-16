@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # custome
     "home",
-    "blog"
+    "blog",
+    # third party apps
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
