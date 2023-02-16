@@ -6,24 +6,14 @@ from .models import BlogDataModel
 from .serializers import BlogDataModelSerializer
 # Create your views here.
 
-
+# list/create api-view for list and create purpose 
 class BlogDataGenericListAPIView(generics.ListCreateAPIView):
     queryset = BlogDataModel.objects.all()
     serializer_class = BlogDataModelSerializer
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+# generic api view for list and create purpose
 class BlogDataGenericAPIView(generics.GenericAPIView):
     queryset = BlogDataModel.objects.all()
     serializer_class = BlogDataModelSerializer
@@ -42,7 +32,7 @@ class BlogDataGenericAPIView(generics.GenericAPIView):
             return Response({
                 "message" : f"Something went wrong, {serializer.errors}"})
 
-
+# update api view for updating and deleting data
 class BlogDataUpdateDeleteGenericAPIView(generics.GenericAPIView):
     queryset = BlogDataModel.objects.all()
     serializer_class = BlogDataModelSerializer
@@ -78,7 +68,7 @@ class BlogDataUpdateDeleteGenericAPIView(generics.GenericAPIView):
         
 
 
-
+# regular api-view for list and create purpose
 class BlogDataAPIView(views.APIView):
 
     def get(self, request):
@@ -98,7 +88,7 @@ class BlogDataAPIView(views.APIView):
             return Response({
                 "message" : f"Something went wrong, {serializer.errors}"})
 
-
+# dummy class-view-api
 class DummyAPI(views.APIView):
     def get(self, request):
         data = {
@@ -108,7 +98,7 @@ class DummyAPI(views.APIView):
         }
         return Response(data)
 
-
+# dummy function based view
 def dummyAPI(request):
     data = {
         "name" : "max",
