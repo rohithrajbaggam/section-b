@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from rest_framework import views, generics
+from rest_framework import views, generics, permissions
 from rest_framework.response import Response
 from .models import BlogDataModel
 from .serializers import BlogDataModelSerializer
@@ -17,6 +17,8 @@ class BlogDataGenericListAPIView(generics.ListCreateAPIView):
 class BlogDataGenericAPIView(generics.GenericAPIView):
     queryset = BlogDataModel.objects.all()
     serializer_class = BlogDataModelSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
     def get(self, request):
         queryset = self.queryset.all()
@@ -88,7 +90,7 @@ class BlogDataAPIView(views.APIView):
             return Response({
                 "message" : f"Something went wrong, {serializer.errors}"})
 
-# dummy class-view-api
+# dummy class-view-0api
 class DummyAPI(views.APIView):
     def get(self, request):
         data = {
